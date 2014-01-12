@@ -1,0 +1,44 @@
+body h1 a{ letter-spacing:0;}
+body #wear-it-with{ display:none;}
+body #header{ display:none;}
+body #footer{ display:none;}
+body #promo-block{ display:none;}
+body #links-list{ display:none;}
+body #button-holder{ display:none;}
+body #thumbnails{ display:none;}
+body #product-images .novideo{ background-image:none;}
+body .top-line{ display:none;}
+body .yui-nav{ display:none;}
+body #tabbed-info .yui-content{ background-image:none;}
+body .shadow-btm{ background-image:none;}
+body #tabbed-info .yui-content .productDescription{ margin:0; padding:0;}
+body .fashion-advisors{ display:none;}
+body #tabbed-info .yui-content p.moreInfo {padding:0;}
+body #tab1, body #tab2, body #tab3{ display:block !important; float:left; margin:10px 0;}
+body #tab-view h2{ display:block !important;}
+body #product-images { margin:0; width:30%;}
+body #product-info { width:40%; float:left; margin-top:0;}
+body .yui-content #tab1 .productDescription, body .yui-content #tab2 .productDescription, body .yui-content #tab3 .productDescription { height:auto; width:auto;}
+body .yui-content #tab3 p.moreInfo { display:none;}
+body .yui-content #tab2 p.moreInfo { display:none;}
+body #tabbed-info .yui-content .productDescription ul { list-style:none; padding-left:0;}
+body .yui-content #tab1 p.moreInfo{float:none;}
+body .clickableImages{ display:none;}
+body #large-image{ width:auto;}
+body #medium-image{ margin:10px 0;}
+body #print-logo{ border-bottom: solid 1px #000; padding-bottom:10px; margin-bottom:30px; display:block !important;}
+body #notes{ clear:both; float:left; width:100%; text-transform:uppercase; margin:50px 0 200px; display:block !important;}
+body .rule{border-bottom: solid 1px #000; height:20px; width:100%;}
+body .product-code{ margin-top:10px; float:left;}
+body #print-footer{ background-color:#000; color:#FFF; padding:10px; display:block !important;}
+body #zoom-box{display:none;}
+body .links-list{ display:none;}
+body .print-select{ display:block !important;}
+body #choose-your-size select{display:none !important;}
+body #size-charts{display:none !important;}
+body #button-holder{display:none !important;}
+body #share-links{display:none !important;}
+body #promo-block{display:none !important;}
+body .print-select li{ padding-right:20px; width:100px; float:left; line-height:1.5; list-style:none;}
+body #choose-your-size h2{display:block;}
+body #choose-your-size{font-weight:90%;}

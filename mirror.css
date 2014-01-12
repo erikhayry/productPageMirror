@@ -1,0 +1,64 @@
+/* line 1, mirror.scss */
+.m-mirror {
+  display: none;
+}
+
+/* line 5, mirror.scss */
+.is-visible .m-mirror {
+  display: block;
+}
+/* line 8, mirror.scss */
+.is-visible #medium-image {
+  display: none;
+}
+
+/* line 13, mirror.scss */
+video {
+  height: auto!important;
+  width: auto!important;
+}
+
+/* line 19, mirror.scss */
+.is-hidden {
+  display: none;
+}
+
+/*
+  module mirror
+*/
+/* line 27, mirror.scss */
+.m-mirror {
+  position: relative;
+  width: 410px;
+  height: 585px;
+  overflow: hidden;
+  padding: 20px 0;
+  margin: 0 auto;
+}
+
+/* line 35, mirror.scss */
+.m-mirror-inner {
+  float: left;
+  width: 350px;
+  height: 360px;
+  position: relative;
+  overflow: hidden;
+  background-color: red;
+}
+/* line 42, mirror.scss */
+.m-mirror-inner video, .m-mirror-inner .m-mirror-snapshot-holder {
+  position: absolute;
+  left: -175px;
+  top: 0;
+}
+
+/* line 49, mirror.scss */
+.js-video {
+  position: absolute;
+}
+
+/* line 56, mirror.scss */
+.m-mirror-nav {
+  float: left;
+  width: 60px;
+}
