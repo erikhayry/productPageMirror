@@ -62,3 +62,59 @@ video {
   float: left;
   width: 60px;
 }
+
+/* line 61, mirror.scss */
+.m-mirror-button, .m-mirror-button-camera, .m-mirror-button-video, .m-mirror-button-email, .m-mirror-button-paint {
+  border: none;
+  background-color: #fff;
+  text-indent: -9999px;
+  width: 32px;
+  height: 32px;
+  background-size: 32px 32px;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+
+/* line 72, mirror.scss */
+.m-mirror-button-camera {
+  background-image: url("icons/Camera.png");
+}
+
+/* line 77, mirror.scss */
+.m-mirror-button-video {
+  background-image: url("icons/Video-Camera.png");
+}
+
+/* line 82, mirror.scss */
+.m-mirror-button-email {
+  background-image: url("icons/E-Mail.png");
+}
+
+/* line 87, mirror.scss */
+.m-mirror-button-paint {
+  background-image: url("icons/Paint.png");
+}
+
+/* line 92, mirror.scss */
+.m-mirror-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 1000px;
+  text-indent: -9999px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/*
+  module glasses
+ */
+/* line 108, mirror.scss */
+.m-glasses {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-color: blue;
+  border: 2px solid blue;
+  z-index: 99;
+}
