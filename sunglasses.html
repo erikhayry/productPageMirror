@@ -729,8 +729,11 @@ rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-wid
 
                 <img id="medium-image" src="./Ray-Ban   The Wayfarer fold-away acetate mirrored sunglasses   NET-A-PORTER.COM_files/414520_fr_pp.jpg" alt="Ray-Ban " width="390" height="585">
                 <div class="m-mirror">
-                  <div class="m-mirror-inner">
-                    <div class="m-glasses" id="js-glasses"></div>
+                  <div class="m-mirror-inner" id="js-mirror-inner">
+                    <img class="m-glasses is-hidden" id="js-glasses" src="images/glasses.png"/>
+                    <div class="m-glasses-overlay" id="js-glasses-overlay"></div>
+
+
                     <video id="js-video" autoplay class="m-mirror-video"></video>
                     <canvas id="js-canvas" class="m-mirror-snapshot is-hidden" width="640" height="360"></canvas>
                     <div id="js-canvas-overaly-holder" class="m-mirror-snapshot-holder">
@@ -756,6 +759,14 @@ rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-wid
                     </li> -->
                   </ul>                  
                 </div>
+                <div class="m-email-form is-hidden" id="js-form">
+                    <label>To</label><input type="text" placeholder="friends email" value="email@email.com"/>
+                    <label>Subject</label><input type="text" value="Should I buy?">
+                    <div id="js-screenshot" class="m-email-form-ss">
+                    </div>
+                    <input type="submit" value="send"/>    
+                </div>
+                <div class="m-lip"></div>
 
         </div>
 
@@ -1033,7 +1044,7 @@ rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-wid
 
 
 
-
+<script type="text/javascript" src="html2canvas.js"></script>
 <script type="text/javascript" src="headtrackr.js"></script>
 <script type="text/javascript" src="mirror.js"></script>
 

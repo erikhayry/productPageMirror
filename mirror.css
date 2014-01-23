@@ -1,24 +1,32 @@
-/* line 1, mirror.scss */
+@font-face {
+  font-family: 'lips-by-me';
+  src: url("font/lips-by-me.eot?36710484");
+  src: url("font/lips-by-me.eot?36710484#iefix") format("embedded-opentype"), url("font/lips-by-me.woff?36710484") format("woff"), url("font/lips-by-me.ttf?36710484") format("truetype"), url("font/lips-by-me.svg?36710484#lips-by-me") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* line 11, mirror.scss */
 .m-mirror {
   display: none;
 }
 
-/* line 5, mirror.scss */
+/* line 15, mirror.scss */
 .is-visible .m-mirror {
   display: block;
 }
-/* line 8, mirror.scss */
+/* line 18, mirror.scss */
 .is-visible #medium-image {
   display: none;
 }
 
-/* line 13, mirror.scss */
+/* line 23, mirror.scss */
 video {
   height: auto!important;
   width: auto!important;
 }
 
-/* line 19, mirror.scss */
+/* line 29, mirror.scss */
 .is-hidden {
   display: none;
 }
@@ -26,7 +34,7 @@ video {
 /*
   module mirror
 */
-/* line 27, mirror.scss */
+/* line 37, mirror.scss */
 .m-mirror {
   position: relative;
   width: 410px;
@@ -36,34 +44,34 @@ video {
   margin: 0 auto;
 }
 
-/* line 35, mirror.scss */
+/* line 45, mirror.scss */
 .m-mirror-inner {
   float: left;
   width: 350px;
   height: 360px;
   position: relative;
   overflow: hidden;
-  background-color: red;
 }
-/* line 42, mirror.scss */
+/* line 51, mirror.scss */
 .m-mirror-inner video, .m-mirror-inner .m-mirror-snapshot-holder {
   position: absolute;
   left: -175px;
   top: 0;
 }
 
-/* line 49, mirror.scss */
+/* line 58, mirror.scss */
 .js-video {
   position: absolute;
 }
 
-/* line 56, mirror.scss */
+/* line 65, mirror.scss */
 .m-mirror-nav {
   float: left;
   width: 60px;
+  list-style: none;
 }
 
-/* line 61, mirror.scss */
+/* line 71, mirror.scss */
 .m-mirror-button, .m-mirror-button-camera, .m-mirror-button-video, .m-mirror-button-email, .m-mirror-button-paint {
   border: none;
   background-color: #fff;
@@ -75,27 +83,32 @@ video {
   margin-bottom: 10px;
 }
 
-/* line 72, mirror.scss */
+/* line 82, mirror.scss */
 .m-mirror-button-camera {
   background-image: url("icons/Camera.png");
 }
 
-/* line 77, mirror.scss */
+/* line 87, mirror.scss */
 .m-mirror-button-video {
   background-image: url("icons/Video-Camera.png");
 }
 
-/* line 82, mirror.scss */
+/* line 92, mirror.scss */
 .m-mirror-button-email {
   background-image: url("icons/E-Mail.png");
 }
 
-/* line 87, mirror.scss */
+/* line 97, mirror.scss */
 .m-mirror-button-paint {
   background-image: url("icons/Paint.png");
 }
 
-/* line 92, mirror.scss */
+/* line 102, mirror.scss */
+.m-mirror-colors {
+  display: none;
+}
+
+/* line 106, mirror.scss */
 .m-mirror-color {
   width: 20px;
   height: 20px;
@@ -107,14 +120,105 @@ video {
 }
 
 /*
+  module email form
+ */
+/* line 120, mirror.scss */
+.m-email-form {
+  position: absolute;
+  right: 113px;
+  top: 28px;
+  z-index: 3;
+  background-color: white;
+  width: 300px;
+  padding: 11px;
+}
+/* line 129, mirror.scss */
+.m-email-form label, .m-email-form input {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+}
+/* line 134, mirror.scss */
+.m-email-form:after {
+  content: '';
+  display: block;
+  border: 10px solid transparent;
+  border-left-color: white;
+  position: absolute;
+  right: -20px;
+  height: 0px;
+  width: 0px;
+  top: 82px;
+  background-color: transparent;
+}
+/* line 147, mirror.scss */
+.m-email-form input[type="submit"] {
+  border: none;
+  background-color: #000;
+  font-family: Arial,Verdana,sans-serif;
+  padding: 7px 13px;
+  color: white;
+  margin: 10px 0;
+}
+
+/* line 157, mirror.scss */
+.m-email-form-ss {
+  overflow: hidden;
+  height: 350px;
+}
+/* line 161, mirror.scss */
+.m-email-form-ss canvas {
+  left: -26px;
+  position: relative;
+}
+
+/*
   module glasses
  */
-/* line 108, mirror.scss */
+/* line 171, mirror.scss */
 .m-glasses {
   position: absolute;
-  width: 100px;
-  height: 100px;
-  border-color: blue;
-  border: 2px solid blue;
-  z-index: 99;
+  width: 350px;
+  height: auto;
+  border-color: aliceblue;
+  border: aliceblue;
+  z-index: 2;
+  left: 0;
+  top: 128px;
+}
+
+/* line 184, mirror.scss */
+.m-glasses-overlay {
+  background-image: url("images/head.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+}
+
+/*
+  module lip
+ */
+/* line 201, mirror.scss */
+.m-lip {
+  font-family: "lips-by-me";
+  font-family: "lips-by-me";
+  font-size: 309px;
+  height: auto;
+  width: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: blue;
+  z-index: 4;
+  line-height: 0;
+  /* '' */
+}
+/* line 213, mirror.scss */
+.m-lip:before {
+  content: '\e800';
 }

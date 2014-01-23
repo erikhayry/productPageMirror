@@ -13,9 +13,12 @@ var initMirror = function(){
 	console.clear();
 	console.log('init mirror')
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+	// vars
+	snapshotMode = false;
 
 	//get elements
 	var videoEl = document.querySelector('#js-video'),
+		mirrorInnerEl = document.querySelector('#js-mirror-inner'),
 	    
 	    canvasEl = document.querySelector('#js-canvas'),
 	    canvasOverlayEl = document.querySelector('#js-canvas-overlay'),
@@ -24,12 +27,9 @@ var initMirror = function(){
 	    showVideoBtnEl = document.querySelector('#js-showVideo'),
 	    lightnessSliderEl = document.querySelector('#js-lightness'),
 	    colorEls = document.querySelectorAll('.js-color'),
-	    glassEl = document.querySelector('#js-glasses');
-
-
-
-	    console.log(videoEl.getBoundingClientRect().left)
-	    console.log(videoEl.getBoundingClientRect().top)
+	    glassEl = document.querySelector('#js-glasses'),
+	    emailFormElBtn = document.querySelector('#js-email'),
+	    emailFormEl = document.querySelector('#js-form'),
 	    
 	    //set variables
 	    ctx = canvasOverlayEl.getContext('2d'),
@@ -39,18 +39,15 @@ var initMirror = function(){
 	function takeSnapshot() {
 	  if (window.localMediaStream) {
 	  	console.log('takeSnapshot')
+	  	snapshotMode = true;
 	    ctx.drawImage(videoEl, 0, 0, 640, 360);
 	  }
 	}
 
 	//setup video tracker
-	var htracker = new headtrackr.Tracker({ui : false});
+	var htracker = new headtrackr.Tracker({ui : false, detectionInterval: 20});
 	htracker.init(videoEl, canvasEl);
 	htracker.start();
-
-
-
-
 
 	//bind events
 	for (var i = 0; i < colorEls.length; i++) {
@@ -62,17 +59,73 @@ var initMirror = function(){
 
 	document.addEventListener('facetrackingEvent', 
 	  function (event) {
-	    glassEl.style.left = event.x - 175 - 50 + 'px'; // x - video.left - glasses width
-	    glassEl.style.top = event.y - 50 + 'px';
+	    if(!snapshotMode){
+	    	glassEl.style.left = event.x - 170 - (glassEl.getBoundingClientRect().width / 2) + 'px'; // x - video.left - glasses width
+	    	glassEl.style.top = event.y - (glassEl.getBoundingClientRect().height / 2) + 'px';
+	    }
 	  }
 	);
+
+	var idealCM = 50,
+		zDist = 0,
+		gWidth = 350;
+
+	setInterval(function(){
+	    console.group('event')
+	    console.log('event.z ' + zDist)
+	    console.log('idealCM ' + idealCM);
+	    console.log(' = ' + idealCM / zDist + ' in px ' + ((idealCM / zDist ) * gWidth))
+	    console.groupEnd();		
+	}, 2000)	
 
 	document.addEventListener('headtrackingEvent', 
 	  function (event) {
-	    console.log(event.z)
+	    //console.log(event.z)
+	    zDist = event.z;
+	    //if(!snapshotMode) glassEl.style.width = ((idealCM / zDist ) * gWidth) + 'px';
+	    //glassEl.style.height = ((idealCM / event.z) * 128) + 'px';
 	  }
 	);
 
+	var testEl = document.querySelector('#header-mid');
+	var emailShowing = false;
+
+	emailFormElBtn.addEventListener('click', function(){
+		if(emailShowing){
+			emailShowing = false;
+			emailFormEl.classList.add('is-hidden');
+		}
+		else{
+			emailShowing = true;
+			emailFormEl.classList.remove('is-hidden');
+			html2canvas(mirrorInnerEl, {});
+		  	html2canvas(mirrorInnerEl, {
+			    onrendered: function(canvas) {
+			        console.log(canvas)
+			        console.log(emailFormEl)
+			        document.querySelector('#js-screenshot').appendChild(canvas);
+			    }
+			});			
+		}	
+
+
+	}, false);
+
+	var ovrelayShowing = true,
+		overlayEl = document.querySelector('#js-glasses-overlay');
+
+	document.querySelector('#js-paint').addEventListener('click', function(){
+		if(ovrelayShowing){
+			ovrelayShowing = false;
+			glassEl.classList.remove('is-hidden');
+			overlayEl.classList.add('is-hidden');
+		}
+		else{
+			ovrelayShowing = true;
+			glassEl.classList.add('is-hidden');
+			overlayEl.classList.remove('is-hidden');
+		}
+	})
 
 	/*lightnessSliderEl.addEventListener('change', function(){
 	  	canvasOverlayEl.style.opacity = this.value * 0.01;
@@ -102,6 +155,8 @@ var initMirror = function(){
 		showVideoBtnEl.classList.add('is-hidden');
 		canvasEl.classList.add('is-hidden');
 		canvasOverlayEl.classList.add('is-hidden');
+
+		snapshotMode = false;
 
 	}, false);
 
