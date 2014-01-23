@@ -48,9 +48,10 @@ var initMirror = function(){
 	}
 
 	//setup video tracker
+	
+	var isTracking = false;
 	var htracker = new headtrackr.Tracker({ui : false, detectionInterval: 20});
 	htracker.init(videoEl, canvasEl);
-	htracker.start();
 
 	lipEl.style.color = colorEls[0].dataset['color'];
 
@@ -61,6 +62,14 @@ var initMirror = function(){
 			lipEl.style.color = this.dataset['color'];
 		}, false);
 	}
+
+	var cpEl = document.querySelector('#js-color-picker');
+	if(cpEl){
+		document.querySelector('#js-color-picker').addEventListener('change', function(){
+	  		lipEl.style.color = this.value;
+		})		
+	}
+
 
 	document.addEventListener('facetrackingEvent', 
 	  function (event) {
@@ -113,7 +122,7 @@ var initMirror = function(){
 			        document.querySelector('#js-screenshot').appendChild(canvas);
 			    }
 			});	
-	
+			lipEl.classList.add('is-hidden');
 		}	
 
 
@@ -133,6 +142,9 @@ var initMirror = function(){
 			glassEl.classList.add('is-hidden');
 			overlayEl.classList.remove('is-hidden');
 		}
+
+		if(!isTracking) htracker.start();
+
 	})
 
 	lightnessSliderEl.addEventListener('change', function(){

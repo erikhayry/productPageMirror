@@ -726,7 +726,6 @@ rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-wid
                         <button class="m-mirror-button-camera" id="js-capture">Capture</button>
                         <button class="m-mirror-button-video is-hidden" id="js-showVideo">Show video</button>
                         <button class="m-mirror-button-paint glass-page" id="js-paint">Paint</button>
-                        <button class="m-mirror-button-email glass-page" id="js-email">Email</button>
                     </li>
                     <li class="m-mirror-nav-item lp-page">
                       <ul class="m-mirror-colors">
@@ -738,9 +737,15 @@ rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-wid
                     <li class="m-mirror-nav-item lp-page">
                       <input id="js-lightness" type="range" min="200" max="400" value="300">
                     </li>
+                    <li class="m-mirror-nav-item lp-page">
+                        <input id="js-color-picker" name="color" type="color" value="#ff0011">
+                    </li>
+                    <li class="m-mirror-nav-item">
+                        <button class="m-mirror-button-email" id="js-email">Email</button>
+                    </li>    
                   </ul>                  
                 </div>
-                <div class="m-email-form is-hidden glass-page" id="js-form">
+                <div class="m-email-form is-hidden" id="js-form">
                     <label>To</label><input type="text" placeholder="friends email" value="email@email.com"/>
                     <label>Subject</label><input type="text" value="Should I buy?">
                     <div id="js-screenshot" class="m-email-form-ss">

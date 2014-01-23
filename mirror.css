@@ -131,10 +131,15 @@ video {
   display: inline-block;
 }
 
+/* line 131, mirror.scss */
+input[type="color"] {
+  border: none;
+}
+
 /*
   module email form
  */
-/* line 135, mirror.scss */
+/* line 138, mirror.scss */
 .m-email-form {
   position: absolute;
   right: 113px;
@@ -144,13 +149,13 @@ video {
   width: 300px;
   padding: 11px;
 }
-/* line 144, mirror.scss */
+/* line 147, mirror.scss */
 .m-email-form label, .m-email-form input {
   display: block;
   margin-bottom: 10px;
   text-align: left;
 }
-/* line 149, mirror.scss */
+/* line 152, mirror.scss */
 .m-email-form:after {
   content: '';
   display: block;
@@ -163,7 +168,7 @@ video {
   top: 82px;
   background-color: transparent;
 }
-/* line 162, mirror.scss */
+/* line 165, mirror.scss */
 .m-email-form input[type="submit"] {
   border: none;
   background-color: #000;
@@ -173,12 +178,12 @@ video {
   margin: 10px 0;
 }
 
-/* line 172, mirror.scss */
+/* line 175, mirror.scss */
 .m-email-form-ss {
   overflow: hidden;
   height: 350px;
 }
-/* line 176, mirror.scss */
+/* line 179, mirror.scss */
 .m-email-form-ss canvas {
   left: -26px;
   position: relative;
@@ -187,7 +192,7 @@ video {
 /*
   module glasses
  */
-/* line 186, mirror.scss */
+/* line 189, mirror.scss */
 .m-glasses {
   position: absolute;
   width: 350px;
@@ -199,7 +204,7 @@ video {
   top: 128px;
 }
 
-/* line 199, mirror.scss */
+/* line 202, mirror.scss */
 .m-glasses-overlay {
   background-image: url("images/head.png");
   background-repeat: no-repeat;
@@ -215,7 +220,7 @@ video {
 /*
   module lip
  */
-/* line 216, mirror.scss */
+/* line 219, mirror.scss */
 .m-lip {
   font-family: "lips-by-me";
   font-size: 309px;
@@ -231,7 +236,7 @@ video {
   height: 50px;
   /* '' */
 }
-/* line 230, mirror.scss */
+/* line 233, mirror.scss */
 .m-lip:before {
   content: '\e800';
 }
