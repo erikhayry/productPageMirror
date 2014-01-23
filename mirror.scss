@@ -25,6 +25,15 @@ video{
   width: auto!important;
 }
 
+
+#sunglasses .lp-page{
+  display: none !important;
+}
+
+#lipstick .glass-page{
+  display: none !important;
+}
+
 //states
 .is-hidden{
   display: none;
@@ -66,6 +75,12 @@ video{
   float: left;
   width: 60px;
   list-style: none;
+  input[type="range"]{
+    -webkit-appearance: slider-vertical;
+    left: -33px;
+    position: relative;
+    margin: 15px 0;
+  }
 }
 
 .m-mirror-button{
@@ -96,12 +111,12 @@ video{
 
 .m-mirror-button-paint{
   @extend .m-mirror-button;
-  background-image: url('icons/Paint.png');
+  background-image: url('icons/Contact.png');
 }
 
-.m-mirror-colors{
-  display: none;
-}
+// .m-mirror-colors{
+//   display: none;
+// }
 
 .m-mirror-color{
   width: 20px;
@@ -200,16 +215,18 @@ video{
 
 .m-lip{
   font-family: "lips-by-me";
-  font-family: "lips-by-me";
-font-size: 309px;
-height: auto;
-width: auto;
-position: absolute;
-left: 0;
-top: 0;
-background-color: blue;
-z-index: 4;
-line-height: 0;
+  font-size: 309px;
+  height: auto;
+  width: auto;
+  position: absolute;
+  left: 0;
+  top: 200px;
+  //background-color: blue;
+  z-index: 4;
+  line-height: 0;
+  text-align: left;
+  width: 100px;
+  height: 50px;
   &:before { content: '\e800'; } /* '' */
 }
 

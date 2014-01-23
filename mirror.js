@@ -30,11 +30,14 @@ var initMirror = function(){
 	    glassEl = document.querySelector('#js-glasses'),
 	    emailFormElBtn = document.querySelector('#js-email'),
 	    emailFormEl = document.querySelector('#js-form'),
+	    lipEl = document.querySelector('#js-lip'),
 	    
 	    //set variables
 	    ctx = canvasOverlayEl.getContext('2d'),
 	    localMediaStream = null,
 	    color = colorEls[0].dataset['color'];
+	    canvasOverlayEl.width = 640;
+		canvasOverlayEl.height = 360;
 
 	function takeSnapshot() {
 	  if (window.localMediaStream) {
@@ -49,11 +52,13 @@ var initMirror = function(){
 	htracker.init(videoEl, canvasEl);
 	htracker.start();
 
+	lipEl.style.color = colorEls[0].dataset['color'];
+
 	//bind events
 	for (var i = 0; i < colorEls.length; i++) {
 		colorEls[i].addEventListener('click', function(){
 			console.log('Current color is: ' + this.dataset['color'])
-			ctx.strokeStyle = color = this.dataset['color']
+			lipEl.style.color = this.dataset['color'];
 		}, false);
 	}
 
@@ -70,13 +75,13 @@ var initMirror = function(){
 		zDist = 0,
 		gWidth = 350;
 
-	setInterval(function(){
+/*	setInterval(function(){
 	    console.group('event')
 	    console.log('event.z ' + zDist)
 	    console.log('idealCM ' + idealCM);
 	    console.log(' = ' + idealCM / zDist + ' in px ' + ((idealCM / zDist ) * gWidth))
 	    console.groupEnd();		
-	}, 2000)	
+	}, 2000)	*/
 
 	document.addEventListener('headtrackingEvent', 
 	  function (event) {
@@ -87,49 +92,52 @@ var initMirror = function(){
 	  }
 	);
 
-	var testEl = document.querySelector('#header-mid');
 	var emailShowing = false;
 
 	emailFormElBtn.addEventListener('click', function(){
 		if(emailShowing){
 			emailShowing = false;
 			emailFormEl.classList.add('is-hidden');
+			//overlayEl.classList.remove('is-hidden');
+			lipEl.classList.remove('is-hidden');
 		}
 		else{
 			emailShowing = true;
 			emailFormEl.classList.remove('is-hidden');
-			html2canvas(mirrorInnerEl, {});
+			console.log(mirrorInnerEl)
+			html2canvas(mirrorInnerEl, {letterRendering : true});
 		  	html2canvas(mirrorInnerEl, {
 			    onrendered: function(canvas) {
 			        console.log(canvas)
 			        console.log(emailFormEl)
 			        document.querySelector('#js-screenshot').appendChild(canvas);
 			    }
-			});			
+			});	
+	
 		}	
 
 
 	}, false);
 
-	var ovrelayShowing = true,
+	var overlayShowing = true,
 		overlayEl = document.querySelector('#js-glasses-overlay');
 
 	document.querySelector('#js-paint').addEventListener('click', function(){
-		if(ovrelayShowing){
-			ovrelayShowing = false;
+		if(overlayShowing){
+			overlayShowing = false;
 			glassEl.classList.remove('is-hidden');
 			overlayEl.classList.add('is-hidden');
 		}
 		else{
-			ovrelayShowing = true;
+			overlayShowing = true;
 			glassEl.classList.add('is-hidden');
 			overlayEl.classList.remove('is-hidden');
 		}
 	})
 
-	/*lightnessSliderEl.addEventListener('change', function(){
-	  	canvasOverlayEl.style.opacity = this.value * 0.01;
-	});*/
+	lightnessSliderEl.addEventListener('change', function(){
+	  	lipEl.style.fontSize = this.value + 'px';
+	});
 
 	captureBtnEl.addEventListener('click', function(){
 	  	takeSnapshot();
@@ -137,11 +145,14 @@ var initMirror = function(){
 		//hide
 		captureBtnEl.classList.add('is-hidden');
 		videoEl.classList.add('is-hidden');
+		overlayEl.classList.add('is-hidden');
 
 		//show
 		showVideoBtnEl.classList.remove('is-hidden');
 		canvasEl.classList.remove('is-hidden');
 		canvasOverlayEl.classList.remove('is-hidden');
+		lipEl.classList.remove('is-hidden');
+
 
 	}, false);
 
@@ -150,71 +161,41 @@ var initMirror = function(){
 		//show
 		captureBtnEl.classList.remove('is-hidden');
 		videoEl.classList.remove('is-hidden');
+		//overlayEl.classList.remove('is-hidden');
+		lipEl.classList.remove('is-hidden');
 		
 		//hide	  
 		showVideoBtnEl.classList.add('is-hidden');
 		canvasEl.classList.add('is-hidden');
 		canvasOverlayEl.classList.add('is-hidden');
+		lipEl.classList.add('is-hidden');
 
 		snapshotMode = false;
 
 	}, false);
 
-/*	var vgaConstraints = {
-	  video: {
-	    mandatory: {
-	      maxWidth: 640,
-	      maxHeight: 360
-	    }
-	  }
-	};
 
-	navigator.getUserMedia(vgaConstraints, 
-		function(stream) {
-		    videoEl.src = window.URL.createObjectURL(stream);
-		    localMediaStream = stream;
-		}, 
-		function(){
-		
+
+	var mouseDown = false;
+	lipEl.addEventListener('mousedown', function(){
+		mouseDown = true;
+	}, false); 
+
+	lipEl.addEventListener('mouseup', function(){
+		mouseDown = false;
+	}, false); 
+
+
+	window.addEventListener('mousemove', divMove, true); 
+
+
+	function divMove(e){
+		if(mouseDown){
+			console.log(e.clientY)
+			console.log(lipEl.getBoundingClientRect().top)
+			lipEl.style.position = 'fixed';
+			lipEl.style.top = e.clientY + "px";
+			lipEl.style.left = e.clientX - (lipEl.getBoundingClientRect().width) + "px";
 		}
-	);*/
-
-	/*
-	  drawing tool
-	*/
-		
-	var sketch = document.querySelector('#js-canvas-overaly-holder'),
-		sketch_style = getComputedStyle(sketch),
-		mouse = {x: 0, y: 0};
-
-	canvasOverlayEl.width = 640;
-	canvasOverlayEl.height = 360;
-
-	 
-	/* Mouse Capturing Work */
-	canvasOverlayEl.addEventListener('mousemove', function(e) {
-		mouse.x = e.pageX - this.offsetLeft;
-		mouse.y = e.pageY - 170; //hardcoded header hight!
-	}, false);
-
-	/* Drawing on Paint App */
-	ctx.lineWidth = 5;
-	ctx.lineJoin = 'round';
-	ctx.lineCap = 'round';
-	ctx.strokeStyle = color;
-	 
-	canvasOverlayEl.addEventListener('mousedown', function(e) {
-		ctx.beginPath();
-		ctx.moveTo(mouse.x, mouse.y);	 
-		canvasOverlayEl.addEventListener('mousemove', onPaint, false);
-	}, false);
-	 
-	canvasOverlayEl.addEventListener('mouseup', function() {
-			canvasOverlayEl.removeEventListener('mousemove', onPaint, false);
-	}, false);
-	 
-	var onPaint = function() {
-			ctx.lineTo(mouse.x, mouse.y);
-			ctx.stroke();
-	};
+	}
 }
