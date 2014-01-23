@@ -119,6 +119,7 @@ var initMirror = function(){
 			    onrendered: function(canvas) {
 			        console.log(canvas)
 			        console.log(emailFormEl)
+			        document.querySelector('#js-screenshot').innerHTML = '';
 			        document.querySelector('#js-screenshot').appendChild(canvas);
 			    }
 			});	
