@@ -50,7 +50,7 @@ var initMirror = function(){
 	//setup video tracker
 	
 	var isTracking = false;
-	var htracker = new headtrackr.Tracker({ui : false, detectionInterval: 20});
+	var htracker = new headtrackr.Tracker({ui : false, detectionInterval: 50});
 	htracker.init(videoEl, canvasEl);
 
 	lipEl.style.color = colorEls[0].dataset['color'];
@@ -70,19 +70,19 @@ var initMirror = function(){
 		})		
 	}
 
+	var idealCM = 50,
+		zDist = 0,
+		gWidth = 350;
 
 	document.addEventListener('facetrackingEvent', 
 	  function (event) {
 	    if(!snapshotMode){
+	    	//glassEl.style.width = ((event.width / gWidth) * gWidth) + 'px';
 	    	glassEl.style.left = event.x - 170 - (glassEl.getBoundingClientRect().width / 2) + 'px'; // x - video.left - glasses width
 	    	glassEl.style.top = event.y - (glassEl.getBoundingClientRect().height / 2) + 'px';
 	    }
 	  }
 	);
-
-	var idealCM = 50,
-		zDist = 0,
-		gWidth = 350;
 
 /*	setInterval(function(){
 	    console.group('event')
